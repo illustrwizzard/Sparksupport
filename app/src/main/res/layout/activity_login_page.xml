@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".Login.LoginPage">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="20dp" />
+
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/usernameEditText"
+        android:layout_marginTop="20dp" />
+
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background"
+        android:layout_below="@+id/passwordEditText"
+        android:layout_marginTop="20dp" />
+
+
+    <LinearLayout
+        android:id="@+id/textViewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/loginButton"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/newUserTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="New User?"
+            android:textAlignment="textEnd"
+            android:gravity="start"
+            android:layout_marginEnd="5dp"
+            tools:ignore="RtlCompat" />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/registerTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Register"
+            android:textColor="#FF5722"
+            android:textSize="20sp"
+            android:gravity="start" />
+    </LinearLayout>
+
+</RelativeLayout>

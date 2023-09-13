@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <shape>
+            <solid android:color="@color/buttoncolor" /> <!-- Set the desired button color when enabled -->
+            <corners android:radius="20dp" /> <!-- Set the desired corner radius -->
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="@color/buttoncolor" /> <!-- Set the desired button color when disabled -->
+            <corners android:radius="4dp" /> <!-- Set the desired corner radius -->
+        </shape>
+    </item>
+
+</selector>

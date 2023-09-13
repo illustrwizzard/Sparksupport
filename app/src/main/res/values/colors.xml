@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="buttoncolor">#ff6600</color>
+    <color name="grocery">#C4F5CC</color>
+    <color name="searchcolor">#DCE3E3</color>
+    <color name="secondmaincolor">#665F5F</color>
+    <color name="rating_color">#03fc07</color>
+    <color name="mob_back">#f5c4c4</color>
+</resources>
