@@ -59,6 +59,7 @@ public class RegisterUserViewModel extends ViewModel {
     }
 
     public LiveData<String> getErrorMessage(){
+        Log.w("erooorrrrr",errorMessage.toString());
         return errorMessage;
     }
 

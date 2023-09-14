@@ -70,6 +70,7 @@ public class RegisterPage extends AppCompatActivity {
         });
 
         userViewModel.getSuccessMessage().observe(this,message->{
+
             Toast.makeText(this, "Registration Succesful", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(RegisterPage.this, LoginPage.class);
             startActivity(intent);

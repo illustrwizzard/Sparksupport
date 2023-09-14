@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.sparksupportinfotech.DashBoard.DashBoardActivity;
 import com.example.sparksupportinfotech.R;
 import com.example.sparksupportinfotech.Register.RegisterPage;
+import com.example.sparksupportinfotech.VolleyRegisterPage.VRegisterPage;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -147,7 +148,7 @@ public class LoginPage extends AppCompatActivity {
         registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(LoginPage.this, RegisterPage.class);
+                Intent i=new Intent(LoginPage.this, VRegisterPage.class);
                 startActivity(i);
             }
         });
