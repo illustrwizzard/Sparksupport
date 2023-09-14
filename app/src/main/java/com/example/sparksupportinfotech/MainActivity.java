@@ -2,7 +2,9 @@ package com.example.sparksupportinfotech;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
@@ -39,28 +41,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 // Animation ended, start the next activity
-                startActivity(new Intent(MainActivity.this, DashBoardActivity.class));
-                finish();
+//                startActivity(new Intent(MainActivity.this, LoginPage.class));
+//                finish();
 
-//                SharedPreferences sharedPreferences=getSharedPreferences("myPreef", Context.MODE_PRIVATE);
-//                int logincheck=sharedPreferences.getInt("check",0);
-//                if (sharedPreferences.contains("check")) {
-//                    // Data is present in SharedPreferences
-//                    // You can also check the value if needed
-//                    if (logincheck == 1) {
-             //          startActivity(new Intent(MainActivity.this, DashBoardActivity.class));
-//                        finish(); //
-//                        // The value is 1
-//                    } else {
-//                        // The value is not 1
-                  //      startActivity(new Intent(MainActivity.this, LoginPage.class));
-//                        finish(); //
-//                    }
-//                } else {
- //                  startActivity(new Intent(MainActivity.this, LoginPage.class));
-//                    finish();
-//                    // Data is not present in SharedPreferences
-//                }
+                SharedPreferences sharedPreferences=getSharedPreferences("myPreef", Context.MODE_PRIVATE);
+                int logincheck=sharedPreferences.getInt("check",0);
+                if (sharedPreferences.contains("check")) {
+                    // Data is present in SharedPreferences
+                    // You can also check the value if needed
+                    if (logincheck == 1) {
+                       startActivity(new Intent(MainActivity.this, DashBoardActivity.class));
+                        finish(); //
+                        // The value is 1
+                    } else {
+                        // The value is not 1
+                        startActivity(new Intent(MainActivity.this, LoginPage.class));
+                        finish(); //
+                    }
+                } else {
+                   startActivity(new Intent(MainActivity.this, LoginPage.class));
+                    finish();
+                    // Data is not present in SharedPreferences
+                }
 
             }
 

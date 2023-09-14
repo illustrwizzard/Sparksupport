@@ -1,6 +1,7 @@
 package com.example.sparksupportinfotech.Register;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.sparksupportinfotech.DashBoard.DashBoardActivity;
 import com.example.sparksupportinfotech.Login.LoginPage;
 import com.example.sparksupportinfotech.R;
 
@@ -27,8 +29,8 @@ public class RegisterPage extends AppCompatActivity {
         EditText emailEditText = findViewById(R.id.emailEditText);
         EditText firstNameEditText = findViewById(R.id.firstNameEditText);
         EditText lastNameEditText = findViewById(R.id.lastNameEditText);
-        EditText usernameEditText = findViewById(R.id.usernameEditText);
-        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        EditText usernameEditText = findViewById(R.id.usernameEditText1);
+        EditText passwordEditText = findViewById(R.id.passwordEditText1);
         EditText confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         Button registerButton = findViewById(R.id.registerButton);
 
@@ -37,7 +39,7 @@ public class RegisterPage extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 String email=emailEditText.getText().toString();
+                String email=emailEditText.getText().toString();
                 String first_name=firstNameEditText.getText().toString();
                 String last_name=lastNameEditText.getText().toString();
                 String username=usernameEditText.getText().toString();
@@ -48,11 +50,9 @@ public class RegisterPage extends AppCompatActivity {
                     if (password.equals(password2)){
 
 
-                        userViewModel.register(email,first_name,last_name,username,password,password2);
+                  // userViewModel.registerUser(username,password,password2,email,first_name,last_name);
 
-
-
-
+                        userViewModel.registerUser("username","password","password","email","first_name","last_name");
 
 
                     }else {
@@ -69,17 +69,14 @@ public class RegisterPage extends AppCompatActivity {
             }
         });
 
-
-        // Observe LiveData from the ViewModel to update the UI
-        userViewModel.getSuccessMessage().observe(this, message -> {
+        userViewModel.getSuccessMessage().observe(this,message->{
+            Toast.makeText(this, "Registration Succesful", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(RegisterPage.this, LoginPage.class);
             startActivity(intent);
-
         });
 
-        userViewModel.getErrorMessage().observe(this, message -> {
+        userViewModel.getErrorMessage().observe(this,message->{
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-
         });
 
         userViewModel.isLoading().observe(this, isLoading -> {

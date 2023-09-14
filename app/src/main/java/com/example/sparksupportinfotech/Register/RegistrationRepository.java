@@ -7,16 +7,14 @@ import retrofit2.Callback;
 
 public class RegistrationRepository {
 
-    private ApiCall apiCall;
+    private ApiCall apiService;
 
     public RegistrationRepository() {
-
-        apiCall = RetrofitClient.getApiService().create(ApiCall.class);
+        apiService=RetrofitClient.getApiService().create(ApiCall.class);
     }
 
-    public void register(String email, String firstName, String lastName,String username, String password, String confirmPassword, Callback<UserRegister> callback) {
-
-        Call<UserRegister> call = apiCall.register(email, firstName, lastName,username, password, confirmPassword);
+  public void registerUser(String username,String password,String password2,String email,String first_name,String last_name,Callback<UserRegister> callback){
+        Call<UserRegister> call= apiService.registerUser(username,password,password2,email,first_name,last_name);
         call.enqueue(callback);
-    }
+  }
 }

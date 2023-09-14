@@ -31,5 +31,19 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showvalue"
+        android:textSize="18sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"/>
+
 
 </LinearLayout>

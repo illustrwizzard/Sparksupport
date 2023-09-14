@@ -1,10 +1,13 @@
 package com.example.sparksupportinfotech.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +25,10 @@ import retrofit2.Response;
 
 public class LoginPage extends AppCompatActivity {
     LoginUserViewModel loginUserViewModel;
+    //String token,liveEmail,liveFname;
+    SharedPreferences.Editor editor;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     public void onBackPressed() {
@@ -33,6 +40,10 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+         sharedPreferences = getSharedPreferences("myPreef", Context.MODE_PRIVATE);
+         editor = sharedPreferences.edit();
+
         EditText usernameEditText = findViewById(R.id.usernameEditText);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
         Button loginButton = findViewById(R.id.loginButton);
@@ -62,10 +73,43 @@ public class LoginPage extends AppCompatActivity {
 
         // Observe LiveData from the ViewModel to update the UI
         loginUserViewModel.getSuccessMessage().observe(this, message -> {
-            //                SharedPreferences sharedPreferences=getSharedPreferences("myPreef", Context.MODE_PRIVATE);
+
+            editor.putInt("check",1);
+
+
+
+            LiveData<String> tokenLiveData = loginUserViewModel.getTokenLiveData();
+            tokenLiveData.observe(this,token->{
+               editor.putString("token", token);
+               editor.apply();
+            });
+            LiveData<String> LiveEmail= loginUserViewModel.getLiveEmail();
+            LiveEmail.observe(this,liveEmail->{
+
+                editor.putString("Email",liveEmail );
+                editor.apply();
+
+            });
+
+            LiveData<String> LiveFirstName= loginUserViewModel.getLiveFirstName();
+            LiveFirstName.observe(this,liveFname->{
+
+                editor.putString("Fname",liveFname );
+                editor.apply();
+
+
+            });
+
+            // SharedPreferences sharedPreferences=getSharedPreferences("myPreef", Context.MODE_PRIVATE);
 //                SharedPreferences.Editor editor=sharedPreferences.edit();
 //                editor.putInt("check",1);
 //                editor.apply();
+
+//            Intent intent=new Intent(LoginPage.this, DashBoardActivity.class);
+//            startActivity(intent);
+
+
+            editor.apply();
 
             Intent intent=new Intent(LoginPage.this, DashBoardActivity.class);
             startActivity(intent);

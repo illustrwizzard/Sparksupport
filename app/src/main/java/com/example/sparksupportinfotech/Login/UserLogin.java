@@ -3,25 +3,82 @@ package com.example.sparksupportinfotech.Login;
 import com.google.gson.annotations.SerializedName;
 
 public class UserLogin {
-  @SerializedName("message")
-    private String message;
+  @SerializedName("refresh")
+    private String refresh;
 
-  @SerializedName("tokken")
-    private String tokken;
+  @SerializedName("access")
+    private String access;
 
-    public String getMessage() {
-        return message;
-    }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    @SerializedName("username")
+    private String username;
 
-    public String getTokken() {
-        return tokken;
-    }
+    @SerializedName("firstname")
+    private String firstname;
 
-    public void setTokken(String tokken) {
-        this.tokken = tokken;
-    }
+
+    @SerializedName("lastname")
+    private String lastname;
+
+
+    @SerializedName("email")
+    private String email;
+
+
+  public UserLogin(String refresh, String access, String username, String firstname, String lastname, String email) {
+    this.refresh = refresh;
+    this.access = access;
+    this.username = username;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.email = email;
+  }
+
+  public String getRefresh() {
+    return refresh;
+  }
+
+  public void setRefresh(String refresh) {
+    this.refresh = refresh;
+  }
+
+  public String getAccess() {
+    return access;
+  }
+
+  public void setAccess(String access) {
+    this.access = access;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getFirstname() {
+    return firstname;
+  }
+
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
+
+  public String getLastname() {
+    return lastname;
+  }
+
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
 }

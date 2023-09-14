@@ -4,27 +4,54 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserRegister {
 
+    @SerializedName("username")
+    private String username;
 
-    @SerializedName("message")
-    private String message;
+    @SerializedName("email")
+    private String email;
 
-    @SerializedName("status")
-    private String status;
+    @SerializedName("first_name")
+    private String first_name;
 
+    @SerializedName("last_name")
+    private String last_name;
 
-    public String getMessage() {
-        return message;
+    public UserRegister(String username, String email, String first_name, String last_name) {
+        this.username = username;
+        this.email = email;
+        this.first_name = first_name;
+        this.last_name = last_name;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getUsername() {
+        return username;
     }
 
-    public String getStatus() {
-        return status;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 }

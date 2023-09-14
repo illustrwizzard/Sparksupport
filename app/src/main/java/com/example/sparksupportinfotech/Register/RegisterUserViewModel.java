@@ -12,52 +12,53 @@ import retrofit2.Response;
 
 public class RegisterUserViewModel extends ViewModel {
 
-    private RegistrationRepository registrationRepository;
-
-    // LiveData for UI updates
+    private  RegistrationRepository registrationRepository;
     private final MutableLiveData<String> successMessage = new MutableLiveData<>();
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
 
-    public RegisterUserViewModel() {
 
+    public RegisterUserViewModel() {
+        // Initialize the registration repository
         registrationRepository = new RegistrationRepository();
     }
 
-    public void register(String email, String firstName, String lastName,String username, String password, String confirmPassword) {
+    public void registerUser(String username,String password,String password2,String email,String first_name,String last_name){
         isLoading.setValue(true);
 
-        registrationRepository.register(email, firstName, lastName,username, password, confirmPassword,  new Callback<UserRegister>() {
+        registrationRepository.registerUser(username,password,password2,email,first_name,last_name, new Callback<UserRegister>() {
             @Override
             public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
-                isLoading.setValue(false);
+                if (response.isSuccessful()){
+                    successMessage.setValue("Register Successful");
 
-                if (response.isSuccessful()) {
-                    successMessage.setValue("Registration successful!");
-                } else {
+                }else{
                     errorMessage.setValue("Registration failed. Please try again.");
                 }
             }
 
             @Override
             public void onFailure(Call<UserRegister> call, Throwable t) {
+
                 isLoading.setValue(false);
                 errorMessage.setValue("Network error. Please check your connection.");
+
             }
         });
     }
 
-    // Getter methods for LiveData
-    public LiveData<String> getSuccessMessage() {
+    public LiveData<String> getSuccessMessage(){
         return successMessage;
     }
 
-    public LiveData<String> getErrorMessage() {
+    public LiveData<String> getErrorMessage(){
         return errorMessage;
     }
 
-    public LiveData<Boolean> isLoading() {
+    public LiveData<Boolean> isLoading(){
         return isLoading;
     }
+
+
 }
