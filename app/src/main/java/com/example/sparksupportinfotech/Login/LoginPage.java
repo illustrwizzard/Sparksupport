@@ -1,11 +1,14 @@
 package com.example.sparksupportinfotech.Login;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,17 +32,25 @@ public class LoginPage extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     SharedPreferences sharedPreferences;
+    private OnBackPressedCallback onBackPressedCallback;
 
-    @Override
-    public void onBackPressed() {
 
-        finishAffinity();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+        onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                finishAffinity();
+
+            }
+        };
+
+        getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
 
          sharedPreferences = getSharedPreferences("myPreef", Context.MODE_PRIVATE);
          editor = sharedPreferences.edit();

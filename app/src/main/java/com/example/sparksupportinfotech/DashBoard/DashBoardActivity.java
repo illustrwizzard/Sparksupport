@@ -1,5 +1,6 @@
 package com.example.sparksupportinfotech.DashBoard;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -26,33 +27,14 @@ import java.util.List;
 public class DashBoardActivity extends AppCompatActivity {
     ImageView logoutimg;
     TextView showvalue;
+    private OnBackPressedCallback onBackPressedCallback;
 
     private RecyclerView recyclerView;
     private ImageAdapter imageAdapter;
     private ImageViewModel imageViewModel;
     private String authToken;
 
-    @Override
-    public void onBackPressed() {
 
-
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(DashBoardActivity.this);
-        builder1.setMessage("Do you want to Exit?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        finishAffinity();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-                    }
-                });
-
-        builder1.create().show();
-    }
 
 
     @SuppressLint("MissingInflatedId")
@@ -62,6 +44,33 @@ public class DashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dash_board);
         logoutimg=findViewById(R.id.logoutimg);
         showvalue=findViewById(R.id.showvalue);
+        onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(DashBoardActivity.this);
+                builder1.setMessage("Do you want to Exit?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                finishAffinity();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                dialog.dismiss();
+                            }
+                        });
+
+                builder1.create().show();
+
+                // Your business logic to handle the back pressed event
+                //Log.d(TAG, "onBackPressedCallback: handleOnBackPressed");
+            }
+        };
+
+        getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
 
         recyclerView = findViewById(R.id.recyclerView); // Replace with your RecyclerView's ID
 
