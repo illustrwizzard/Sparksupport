@@ -148,7 +148,7 @@ public class LoginPage extends AppCompatActivity {
         registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(LoginPage.this, VRegisterPage.class);
+                Intent i=new Intent(LoginPage.this, RegisterPage.class);
                 startActivity(i);
             }
         });

@@ -57,7 +57,7 @@
         android:id="@+id/passwordEditText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="Password (mix of numbers and letters)"
         android:inputType="textPassword"
         android:layout_below="@+id/usernameEditText1"
         android:layout_marginTop="16dp" />
