@@ -13,10 +13,21 @@ public interface ApiCall {
 
     @FormUrlEncoded
     @POST("register/")
-    Call<Void> signUp(@Body UserRegister user);
+    Call<UserRegister> register(
+            @Field("email") String email,
+            @Field("first_name") String firstName,
+            @Field("last_name") String lastName,
+            @Field("username") String username,
+            @Field("password") String password,
+            @Field("password2") String confirmPassword
+
+    );
 
     @FormUrlEncoded
     @POST("login/")
-    Call<Void> loginIn(@Body UserLogin userLogin);
+    Call<UserLogin> login(
+            @Field("username") String username,
+            @Field("password") String password
+    );
 
 }

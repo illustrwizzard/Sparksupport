@@ -11,14 +11,14 @@ public class RetrofitClient {
 
     private static Retrofit retrofit;
 
-    public static ApiCall getApiService() {
+    public static Retrofit getApiService() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return retrofit.create(ApiCall.class);
+        return retrofit;
     }
 }
 

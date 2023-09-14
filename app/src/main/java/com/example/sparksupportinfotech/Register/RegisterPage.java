@@ -48,26 +48,11 @@ public class RegisterPage extends AppCompatActivity {
                     if (password.equals(password2)){
 
 
-                        UserRegister user = new UserRegister(email,first_name,last_name,username,password,password2);
-                        userViewModel.signUpUser(user, new Callback<Void>() {
-                            @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
-                                if (response.isSuccessful()) {
-                                    // Signup was successful, show a success message
-                                    Intent intent=new Intent(RegisterPage.this, LoginPage.class);
-                                    startActivity(intent);
-                                } else {
-                                    Toast.makeText(RegisterPage.this, "SignUp Failed", Toast.LENGTH_SHORT).show();
+                        userViewModel.register(email,first_name,last_name,username,password,password2);
 
-                                }
-                            }
 
-                            @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
-                                // Network request failure, handle error
-                                Toast.makeText(RegisterPage.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+
+
 
 
                     }else {
@@ -82,6 +67,23 @@ public class RegisterPage extends AppCompatActivity {
 
 
             }
+        });
+
+
+        // Observe LiveData from the ViewModel to update the UI
+        userViewModel.getSuccessMessage().observe(this, message -> {
+            Intent intent=new Intent(RegisterPage.this, LoginPage.class);
+            startActivity(intent);
+
+        });
+
+        userViewModel.getErrorMessage().observe(this, message -> {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+
+        });
+
+        userViewModel.isLoading().observe(this, isLoading -> {
+
         });
 
 

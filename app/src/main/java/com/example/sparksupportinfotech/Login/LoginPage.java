@@ -1,6 +1,7 @@
 package com.example.sparksupportinfotech.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sparksupportinfotech.DashBoard.DashBoardActivity;
 import com.example.sparksupportinfotech.R;
 import com.example.sparksupportinfotech.Register.RegisterPage;
 
@@ -48,38 +50,44 @@ public class LoginPage extends AppCompatActivity {
 
                 if (!username.isEmpty() & !password.isEmpty()) {
 
-                    UserLogin userLogin=new UserLogin(username,password);
+                    loginUserViewModel.login(username,password);
 
-                    loginUserViewModel.loginUser(userLogin, new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            if (response.isSuccessful()){
-//                SharedPreferences sharedPreferences=getSharedPreferences("myPreef", Context.MODE_PRIVATE);
-//                SharedPreferences.Editor editor=sharedPreferences.edit();
-//                editor.putInt("check",1);
-//                editor.apply();
 
-                                Toast.makeText(LoginPage.this, "Login Success full", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(LoginPage.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-
-                            Toast.makeText(LoginPage.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    // Successful login
-                    Toast.makeText(LoginPage.this, "Login successful", Toast.LENGTH_SHORT).show();
                 } else {
                     // Failed login
                     Toast.makeText(LoginPage.this, "Field Cannot be empty", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        // Observe LiveData from the ViewModel to update the UI
+        loginUserViewModel.getSuccessMessage().observe(this, message -> {
+            //                SharedPreferences sharedPreferences=getSharedPreferences("myPreef", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor=sharedPreferences.edit();
+//                editor.putInt("check",1);
+//                editor.apply();
+
+            Intent intent=new Intent(LoginPage.this, DashBoardActivity.class);
+            startActivity(intent);
+
+        });
+
+        loginUserViewModel.getErrorMessage().observe(this, message -> {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+
+        });
+
+        loginUserViewModel.isLoading().observe(this, isLoading -> {
+
+        });
+
+
+
+
+
+
+
+
 
         registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
