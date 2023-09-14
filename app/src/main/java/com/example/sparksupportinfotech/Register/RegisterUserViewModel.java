@@ -1,5 +1,7 @@
 package com.example.sparksupportinfotech.Register;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -32,6 +34,8 @@ public class RegisterUserViewModel extends ViewModel {
             public void onResponse(Call<UserRegister> call, Response<UserRegister> response) {
                 if (response.isSuccessful()){
                     successMessage.setValue("Register Successful");
+//                    UserRegister userRegister=response.body();
+//                    String data=userRegister.getEmail();
 
                 }else{
                     errorMessage.setValue("Registration failed. Please try again.");
@@ -40,6 +44,8 @@ public class RegisterUserViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<UserRegister> call, Throwable t) {
+
+                Log.e("API Error", t.getMessage(), t);
 
                 isLoading.setValue(false);
                 errorMessage.setValue("Network error. Please check your connection.");

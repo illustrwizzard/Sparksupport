@@ -27,8 +27,8 @@ public interface ApiCall {
             @Field("last_name") String last_name
             );
 
-//    @POST("register/")
-//    Call<Void> registerUser(@Body UserRegister userRegistration);
+//    @POST("registere/")
+//    Call<Void> registerUsere(@Body UserRegister userRegistration);
 
     @FormUrlEncoded
     @POST("login/")

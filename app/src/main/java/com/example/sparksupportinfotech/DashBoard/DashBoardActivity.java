@@ -32,6 +32,28 @@ public class DashBoardActivity extends AppCompatActivity {
     private ImageViewModel imageViewModel;
     private String authToken;
 
+    @Override
+    public void onBackPressed() {
+
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(DashBoardActivity.this);
+        builder1.setMessage("Do you want to Exit?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        finishAffinity();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+        builder1.create().show();
+    }
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -103,24 +125,5 @@ public class DashBoardActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
 
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(DashBoardActivity.this);
-        builder.setMessage("Do you want to Exit?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finishAffinity();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-                    }
-                });
-
-        builder.create().show();
-    }
 }

@@ -50,9 +50,9 @@ public class RegisterPage extends AppCompatActivity {
                     if (password.equals(password2)){
 
 
-                  // userViewModel.registerUser(username,password,password2,email,first_name,last_name);
+                  userViewModel.registerUser(username,password,password2,email,first_name,last_name);
 
-                        userViewModel.registerUser("username","password","password","email","first_name","last_name");
+                       // userViewModel.registerUser("username551","password551","password551","email5551","first_name551","last_name551");
 
 
                     }else {
@@ -75,7 +75,7 @@ public class RegisterPage extends AppCompatActivity {
             startActivity(intent);
         });
 
-        userViewModel.getErrorMessage().observe(this,message->{
+        userViewModel.getErrorMessage().observe(this,messagee->{
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
         });
 
